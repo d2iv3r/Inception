@@ -1,0 +1,59 @@
+version: '3.8'
+services:
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    build: ./requirements/mariadb
+    restart: on-failure
+    env_file:
+      - .env
+    networks:
+      - my_network
+    volumes:
+      - DB:/var/lib/mysql
+
+  wordpress:
+    image: wordpress
+    container_name: wordpress
+    build: ./requirements/wordpress
+    restart: on-failure
+    depends_on:
+      - mariadb
+    networks:
+      - my_network
+    env_file:
+      - .env
+    volumes:
+      - Wordpress:/var/www/html/wordpress
+
+  nginx:
+    image: nginx
+    container_name: nginx
+    build: ./requirements/nginx
+    restart: on-failure
+    depends_on:
+      - wordpress
+    ports:
+      - 443:443
+    networks:
+      - my_network
+    volumes:
+      - Wordpress:/var/www/html/wordpress
+
+networks:
+  my_network:
+    name: my_network
+
+volumes:
+  DB:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/efarhat/data/db
+  Wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/efarhat/data/wordpress
