@@ -45,7 +45,7 @@ The project requires setting up a system architecture with multiple containers, 
 3. Access the services:
    - Nginx: `https://<your-domain>`
    - WordPress: `https://<your-domain>/wordpress`
-   - wordpress admin: `https://<your-domain>/wp-admin`
+   - Wordpress admin: `https://<your-domain>/wp-admin`
 
 ## Configuration
 
