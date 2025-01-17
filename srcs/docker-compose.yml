@@ -50,10 +50,10 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/efarhat/data/db
+      device: your/path/to/volume/db
   Wordpress:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /home/efarhat/data/wordpress
+      device: your/path/to/volume/wordpress

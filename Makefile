@@ -3,7 +3,7 @@
 all : build
 
 build:
-	mkdir -p /home/efarhat/data/wordpress /home/efarhat/data/db
+	mkdir -p your/path/to/volume/wordpress your/path/to/volume/db
 	docker-compose -f srcs/docker-compose.yml up --build -d
 
 clean:
